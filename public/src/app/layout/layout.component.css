@@ -1,0 +1,10 @@
+.container {
+  padding-top: 5%;
+}
+
+
+.footer {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}

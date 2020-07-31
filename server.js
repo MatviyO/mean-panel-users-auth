@@ -13,12 +13,12 @@ connectDB();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/dist/public/'));
 app.use('/api', appRoutes);
 
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/public/app/views/index.html'))
+    res.sendFile(path.join(__dirname + '/public/dist/public/index.html'))
 })
 
 app.listen(PORT, () => {
