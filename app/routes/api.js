@@ -1,6 +1,8 @@
 const User = require('../models/user')
 
 module.exports = function(router) {
+
+    //regist
     router.post('/users',  (req,res) => {
         const user = new User();
         user.username = req.body.username;
@@ -18,10 +20,18 @@ module.exports = function(router) {
                 }
             });
         }
-
-
-
     });
+    //login
+    router.post('/authenticate', (req, res) => {
+        User.findOne({username: req.body.username}).select('email username password').exec((err, user) => {
+            if (err) throw err;
+            if(!user) {
+                res.json({succes: false, message: })
+            }
+
+        })
+        res.send('response')
+    })
 
     return router
 

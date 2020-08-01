@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router) {
     this.myForm = formBuilder.group({
-      email: ['', [ Validators.required, Validators.email]],
       username : [Validators.minLength(3), [Validators.required]],
       password: [Validators.minLength(6),  Validators.required]
     });
@@ -27,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   async onSubmit(){
-    await this.usersService.getUsers(this.myForm).subscribe((r: any) => {
+    await this.usersService.getAuthentication(this.myForm).subscribe((r: any) => {
       console.log(r)
       if (r.success) {
         this.responseMessage = r.message;

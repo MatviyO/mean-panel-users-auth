@@ -12,7 +12,7 @@ export class UsersService {
   createUsers(data) {
     return this.http.post(`${this.url}/users`, data, {headers: this.myHeaders})
   }
-  getUsers(data) {
-    return this.http.get(`${this.url}/users`, data)
+  getAuthentication(data) {
+    return this.http.post(`${this.url}/authenticate`, data)
   }
 }
