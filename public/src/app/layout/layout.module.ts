@@ -5,6 +5,11 @@ import {RouterModule} from "@angular/router";
 import {HomeComponent} from "../modules/home/home.component";
 import {AboutComponent} from "../modules/about/about.component";
 import {LayoutComponent} from "./layout.component";
+import {RegistrComponent} from "../modules/users/registr/registr.component";
+import {LoginComponent} from "../modules/users/login/login.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {UsersService} from "../modules/users.service";
 
 
 
@@ -12,12 +17,19 @@ import {LayoutComponent} from "./layout.component";
   declarations: [
     HomeComponent,
     AboutComponent,
-    LayoutComponent
+    LayoutComponent,
+    RegistrComponent,
+    LoginComponent
+
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
-  ]
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers: [UsersService]
 })
 export class LayoutModule { }

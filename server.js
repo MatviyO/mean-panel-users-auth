@@ -7,9 +7,11 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const appRoutes = require('./app/routes/api')(router);
 const connectDB = require('./config/db');
+const cors = require('cors')
 connectDB();
 
 //---middleware
+app.use(cors())
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
