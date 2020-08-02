@@ -23,14 +23,23 @@ module.exports = function(router) {
     });
     //login
     router.post('/authenticate', (req, res) => {
+        console.log(req.body)
         User.findOne({username: req.body.username}).select('email username password').exec((err, user) => {
             if (err) throw err;
+
             if(!user) {
-                res.json({succes: false, message: })
+                res.json({succes: false, message: 'Clound no authentification user'})
+            } else if (user) {
+                const valid = user.comparePassword(req.body.password);
+                if (!valid) {
+                    res.json({success: false, message: 'Clound not authentificate password'})
+                } else {
+                    res.json({ success: true, message: 'User authentifacation'})
+                }
+
             }
 
         })
-        res.send('response')
     })
 
     return router

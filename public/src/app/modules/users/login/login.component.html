@@ -1,5 +1,5 @@
 <div class="text-center">
-  <form class="form-signin" [formGroup]="myForm"  novalidate (ngSubmit)="onSubmit()">
+  <form class="form-signin" [formGroup]="myForm1"  novalidate (ngSubmit)="onSubmit()">
     <img class="mb-4" src="assets/img/logo.png" alt="" width="150" height="150">
     <h1 class="h3 mb-3 font-weight-normal">Login</h1>
     <label for="username" class="sr-only">UserName</label>
@@ -7,15 +7,6 @@
     <label for="inputPassword" class="sr-only">Username</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" name="password" ngModel   required>
 
-    <button class="btn btn-lg btn-primary btn-block" [disabled]="myForm.invalid" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" [disabled]="myForm1.invalid" type="submit">Sign in</button>
   </form>
-  <br>
-  <div class="form-signin">
-    <div class="row show-hide-message" *ngIf="responseBool">
-      <div class="alert alert-success">{{responseMessage}} </div>
-    </div>
-    <div class="row show-hide-message" *ngIf="!responseBool === undefined && responseBool === false ">
-      <div class="alert alert-danger">{{responseMessage}} </div>
-    </div>
-  </div>
 </div>
