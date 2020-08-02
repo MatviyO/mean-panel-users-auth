@@ -22,7 +22,11 @@ app.use('/api', appRoutes);
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/public/dist/public/index.html'))
 })
+try {
+    app.listen(PORT, () => {
+        console.log(`Server has been started on port : ${PORT}`)
+    })
 
-app.listen(PORT, () => {
-    console.log(`Server has been started on port : ${PORT}`)
-})
+} catch (e) {
+    console.log(e)
+}

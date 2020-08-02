@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Router} from "@angular/router";
 import {UsersService} from "../../users.service";
 
@@ -27,8 +26,8 @@ export class RegistrComponent implements OnInit {
 
   ngOnInit() {
   }
-  async onSubmit(){
-    await this.usersService.createUsers(this.myForm).subscribe((r: any) => {
+  onSubmit() {
+      this.usersService.createUsers(this.myForm.value).subscribe((r: any) => {
       console.log(r)
       if (r.success) {
          this.responseMessage = r.message;
@@ -38,7 +37,10 @@ export class RegistrComponent implements OnInit {
         this.responseBool = r.success
       };
     });
-    this.myForm.reset();
+    setTimeout(() => {
+      this.myForm.reset();
+    }, 300)
+
     setTimeout(() => {
         this.router.navigate(['/login'])
     }, 1200)
