@@ -7,6 +7,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class UsersService {
   private url = 'http://localhost:8080/api';
   myHeaders = new HttpHeaders().set("Content-Type", "application/json");
+
   constructor(private http: HttpClient) { }
 
   createUsers(data) {
@@ -14,5 +15,8 @@ export class UsersService {
   }
   getAuthentication(data) {
     return this.http.post(`${this.url}/authenticate`, data, {headers: this.myHeaders})
+  }
+  authToken(...user) {
+    window.localStorage.setItem('user', JSON.stringify(user))
   }
 }

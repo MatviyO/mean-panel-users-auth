@@ -9,9 +9,6 @@ import {RegistrComponent} from "../modules/users/registr/registr.component";
 import {LoginComponent} from "../modules/users/login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {UsersService} from "../modules/users.service";
-
-
 
 @NgModule({
   declarations: [
@@ -29,7 +26,6 @@ import {UsersService} from "../modules/users.service";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-  ],
-  providers: [UsersService]
+  ]
 })
 export class LayoutModule { }

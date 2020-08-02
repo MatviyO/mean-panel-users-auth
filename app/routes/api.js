@@ -1,5 +1,6 @@
 const User = require('../models/user')
-
+const jwt = require('jsonwebtoken')
+const secret = 'harry'
 module.exports = function (router) {
     //regist
     router.post('/users', (req, res) => {
@@ -38,7 +39,8 @@ module.exports = function (router) {
                         if (!valid) {
                             res.json({success: false, message: 'Clound not authentificate password'})
                         } else {
-                            res.json({success: true, message: 'User authentifacation'})
+                            const token = jwt.sign({username: user.name, email: user.email}, secret, {expiresIn: '24h'})
+                            res.json({success: true, message: 'User authentifacation', token: token, user: req.body.username})
                         }
                     } else {
                         res.json({success: false, message: 'No password provided'})

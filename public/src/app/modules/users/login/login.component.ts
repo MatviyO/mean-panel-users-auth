@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UsersService} from "../../users.service";
+import {UsersService} from "../../../shared/services/users.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../shared/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   responseMessage: any;
   responseBool: any;
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router, private authService: AuthService) {
     this.myForm = formBuilder.group({
       username : [Validators.minLength(3), [Validators.required]],
       password: [Validators.minLength(6),  Validators.required]
@@ -26,7 +27,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log(this.myForm)
     this.usersService.getAuthentication(this.myForm.value).subscribe((r: any) => {
-      console.log(r)
+      console.log(r);
+      this.usersService.authToken(r.token, r.user);
+      this.authService.login();
       if (r.success) {
         this.responseMessage = r.message;
         this.responseBool = r.success
