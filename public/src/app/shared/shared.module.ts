@@ -5,6 +5,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {RouterModule} from "@angular/router";
 import {UsersService} from "./services/users.service";
 import {AuthService} from "./services/auth.service";
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -15,7 +16,8 @@ import {AuthService} from "./services/auth.service";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatIconModule
   ],
   exports: [
     HeaderComponent,

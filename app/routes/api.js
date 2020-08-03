@@ -40,7 +40,7 @@ module.exports = function (router) {
                             res.json({success: false, message: 'Clound not authentificate password'})
                         } else {
                             const token = jwt.sign({username: user.name, email: user.email}, secret, {expiresIn: '24h'})
-                            res.json({success: true, message: 'User authentifacation', token: token, user: req.body.username})
+                            res.json({success: true, message: 'User authentifacation', token: token, user: user})
                         }
                     } else {
                         res.json({success: false, message: 'No password provided'})
@@ -49,7 +49,25 @@ module.exports = function (router) {
             } catch (e) {
                 console.log(e)
             }
-        })
+        });
     })
+    router.use( (req,res, next) => {
+        const token = req.body.token || req.body.query || req.header('x-access-token')
+        if (token) {
+            jwt.verify(token, secret, (err, decoded) => {
+                if (err) {
+                    res.json({success: false, message: 'Token invalid'})
+                } else {
+                    req.decoded = decoded;
+                    next();
+                }
+            })
+        } else {
+            res.json({success: false, message: 'No token provided'})
+        }
+    })
+    router.get('/me', ((req, res)  => {
+        res.send(req.decoded)
+    }))
     return router
 }

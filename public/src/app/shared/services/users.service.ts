@@ -19,4 +19,8 @@ export class UsersService {
   authToken(...user) {
     window.localStorage.setItem('user', JSON.stringify(user))
   }
+  getAuthToken() {
+    return JSON.parse(window.localStorage.getItem('user'))
+  }
+
 }

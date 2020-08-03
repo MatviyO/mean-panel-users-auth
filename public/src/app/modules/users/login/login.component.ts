@@ -25,11 +25,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    console.log(this.myForm)
     this.usersService.getAuthentication(this.myForm.value).subscribe((r: any) => {
       console.log(r);
       this.usersService.authToken(r.token, r.user);
       this.authService.login();
+
       if (r.success) {
         this.responseMessage = r.message;
         this.responseBool = r.success
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
     setTimeout(() => {
       this.router.navigate(['/home'])
-    }, 1200)
+    }, 2000)
 
   }
 }

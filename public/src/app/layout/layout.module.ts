@@ -9,6 +9,9 @@ import {RegistrComponent} from "../modules/users/registr/registr.component";
 import {LoginComponent} from "../modules/users/login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {UsersService} from "../shared/services/users.service";
+import {AuthService} from "../shared/services/auth.service";
+import {ProfileComponent} from "../modules/profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import {HttpClientModule} from "@angular/common/http";
     AboutComponent,
     LayoutComponent,
     RegistrComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
 
   ],
   imports: [
@@ -26,6 +30,7 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-  ]
+  ],
+  providers: [UsersService, AuthService]
 })
 export class LayoutModule { }
