@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UsersService} from "../../../shared/services/users.service";
 import {Router} from "@angular/router";
@@ -9,12 +9,12 @@ import {AuthService} from "../../../shared/services/auth.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit  {
 
   myForm: FormGroup;
   responseMessage: any;
   responseBool: any;
-
+  @Input() authLogginTrue;
   constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router, private authService: AuthService) {
     this.myForm = formBuilder.group({
       username : [Validators.minLength(3), [Validators.required]],

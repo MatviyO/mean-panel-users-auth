@@ -7,7 +7,9 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const appRoutes = require('./app/routes/api')(router);
 const connectDB = require('./config/db');
-const cors = require('cors')
+const cors = require('cors');
+const passport = require('passport');
+const social = require('./app/passport/passport')(app, passport)
 connectDB();
 
 //---middleware

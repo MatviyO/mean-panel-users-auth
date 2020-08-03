@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UsersService} from "../services/users.service";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
@@ -8,11 +8,11 @@ import {Router} from "@angular/router";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit  {
   user: any;
   mass: any;
   username = ''
-  authLogginTrue: any;
+  @Input() authLogginTrue;
   constructor(private authService: AuthService,
               private usersService: UsersService,
               private router: Router
@@ -23,10 +23,17 @@ export class HeaderComponent implements OnInit {
     console.log(this.user)
     this.mass = this.user[1]
     this.username = this.mass.username;
+    if (this.user[0]) {
+      this.authLogginTrue = !this.authLogginTrue;
+    }
+
 
   }
+
+
   logOut() {
-    this.authLogginTrue = this.authService.logout()
+    this.authService.logout()
+    this.authLogginTrue = !this.authLogginTrue;
     setTimeout(() => {
       this.router.navigate(['/login'])
     },100)
