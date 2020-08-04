@@ -6,14 +6,10 @@ module.exports = function (app, passport) {
         clientSecret: FACEBOOK_API_SECRET,
         callbackURL: "http://www.example.com/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
-
     },
         function (accesToken, refreshToken, profile, done) {
         done(null, profile)
-
         }
-
-
     ));
     return passport
 }

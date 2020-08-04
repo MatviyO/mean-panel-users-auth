@@ -2,7 +2,16 @@
   padding-top: 5%;
 }
 
-
+@media (min-width: 992px) {
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: 1709px;
+  }
+}
+@media (min-width: 1200px) {
+  .container[_ngcontent-pfs-c29], .container-lg[_ngcontent-pfs-c29], .container-md[_ngcontent-pfs-c29], .container-sm[_ngcontent-pfs-c29] {
+    max-width: 1709px;
+  }
+}
 .footer {
   bottom: 0;
   display: flex;
